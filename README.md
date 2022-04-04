@@ -12,3 +12,4 @@ The purpose of this project is to analyze the computation time of Dijkstra's sin
 | Binomial      | O(1)          | O(logn)     | O(1)   | O(logn)      | O(1)  |
 | Fibonacci     | O(1)          | O(logn)     | O(1)   | O(1)         | O(1)  |
 | Rank-Pairing  | O(1)          | O(logn)     | O(1)   | O(1)         | O(1)  |
+| Quake         | O(1)          | O(logn)     | O(1)   | O(1)         | O(1)  |
