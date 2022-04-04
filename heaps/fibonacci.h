@@ -6,10 +6,10 @@ using namespace std;
 const int MAX_SIZE = 200000; //the maximum amount of elements our heap should have.
 
 template <typename Object>
-class Heap
+class FibHeap
 {
 public:
-   Heap(){
+   FibHeap(){
       elements = 0;
    };
    void insert(Object* item){

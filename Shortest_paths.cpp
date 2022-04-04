@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Simple\n" << endl;
   outfile << "Dijkstra Simple\n"<< endl;
   start = chrono::steady_clock::now();
-  Dijkstra(Nodes,Or,Nm);
+  DijkstraBinary(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Heap\n" << endl;
   outfile << "Dijkstra Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraHeap(Nodes,Or,Nm);
+  DijkstraBinary(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
   cout << "CALLING Bellman-Ford\n" << endl;
   outfile << "Bellman-Ford\n"<< endl;
   start = chrono::steady_clock::now();
-  BellmanFord(Nodes,Or,Nm);
+  // BellmanFord(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());

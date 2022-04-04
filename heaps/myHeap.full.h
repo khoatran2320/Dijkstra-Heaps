@@ -6,10 +6,10 @@ using namespace std;
 const int MAX_SIZE = 200000; //the maximum amount of elements our heap should have.
 
 template <typename Object>
-class Heap
+class BinaryHeap
 {
 public:
-   Heap(){
+   BinaryHeap(){
       elements = 0;
    };
    void insert(Object* item){// Add the object pointer item to the heap
