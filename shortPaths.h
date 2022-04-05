@@ -4,25 +4,12 @@
 #include <queue>
 #include "myHeap.full.h"  // This is my version of HW 2.  You can include your own binary heap
 #include <string>
+#include "node_utils.h"
 
 #define LARGE1 9999999
 
 using namespace std;
 
-
-struct arc{
-  struct arc *next;
-  int length;
-  int end;
-  };
-
-typedef struct node{
-   struct arc *first; /* first arc in linked list */
-   int id;  // The number of the vertex in this node 
-   int key;  /* Distance estimate, named key to reuse heap code*/
-   int P;  /* Predecessor node in shortest path */
-   int position;  /* Position of node in heap, from 0 to Nm, where 0 is best */
-   } nodeitem;
 
 void DijkstraBinary(nodeitem N[], int Or, int Nm)
 {
