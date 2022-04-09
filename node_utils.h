@@ -16,10 +16,44 @@ typedef struct node{
    } nodeitem;
 
 struct rpnode{
-    nodeitem *node;
-    int rank;
-    rpnode *next;
-    rpnode *lchild;
-    rpnode *rchild;
+  nodeitem *node;
+  int rank;
+  rpnode *next;
+  rpnode *lchild;
+  rpnode *rchild;
+};
+
+struct quakenode{
+  nodeitem *node;
+  int level;
+  bool isLeaf;
+  quakenode *top;
+  quakenode *parent;
+  quakenode *lchild;
+  quakenode *next;
+  quakenode *rchild;
+  quakenode *leaf;
+
+  quakenode(){
+    top = nullptr;
+    next = nullptr;
+    parent = nullptr;
+    lchild = nullptr;
+    rchild = nullptr;
+    leaf = nullptr;
+    isLeaf = true;
+    node = nullptr;
+  };
+  quakenode(nodeitem * item){
+    top = nullptr;
+    next = nullptr;
+    parent = nullptr;
+    lchild = nullptr;
+    rchild = nullptr;
+    isLeaf = true;
+    node = item;
+    leaf = nullptr;
+
+  }
 };
 #endif
