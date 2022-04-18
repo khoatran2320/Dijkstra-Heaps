@@ -2,6 +2,12 @@
     "files.associations": {
         "*.cu": "cpp",
         "*.cuh": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp"
     }
 }

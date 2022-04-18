@@ -16,7 +16,7 @@ CXXFLAGS = -g -std=c++11
 #============================================================
 all: $(TARGET)
 
-Shortest_paths.o: Shortest_paths.cpp shortPaths.h 
+Shortest_paths.o: Shortest_paths.cpp dijkstra.h 
 	$(CCX)  -c $(CXXFLAGS) $<   
 
 $(TARGET) :   $(C_OBJS)

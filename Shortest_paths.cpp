@@ -11,7 +11,8 @@ Or = 1 set source node to 1 ;
 #include <chrono>
 #include <queue>
 #include <cstring>
-#include "shortPaths.h"
+#include "dijkstra.h"
+#include "node_utils.h"
 
 #define maxnodes 200000
 #define LARGE 99999999
@@ -20,7 +21,7 @@ using namespace std;
 
 
 
-void printOutput(nodeitem N[], int Origin, int Nm, ofstream & ofile){
+void printOutput(node N[], int Origin, int Nm, ofstream & ofile){
   int Nd = 10;  // You can change the number destinations  selected here.
   int SelectDestinations[Nd + 1]; // nodes go from 1 ,,,, Nm
   int take = 0;
@@ -60,7 +61,7 @@ int main(int argc, char *argv[])
   chrono::time_point<chrono::steady_clock> start, stop; 
   chrono::duration<double> difference_in_time;
   double difference_in_seconds; // Holds the final run time 
-  nodeitem Nodes[maxnodes]; // The vertices of the graph
+  node Nodes[maxnodes]; // The vertices of the graph
   struct arc *edge;
 
 /* For simplicity, input vertices are numbered from 1 */
@@ -77,7 +78,6 @@ int main(int argc, char *argv[])
     Nodes[i].id = i;
 	  Nodes[i].key = LARGE;
 	  Nodes[i].P = -1;
-	  Nodes[i].position = -1;
   }
   // Read arcs: we create these dynamically, store them in linked lists 
   for (int i=0;i<Na;i++){
@@ -91,8 +91,8 @@ int main(int argc, char *argv[])
   Or = 1; // origin node
   ofstream outfile(strcat(argv[1],"_out"));
 
-  cout << "CALLING Dijkstra Simple\n" << endl;
-  outfile << "Dijkstra Simple\n"<< endl;
+  cout << "CALLING Dijkstra Binary Heap\n" << endl;
+  outfile << "Dijkstra Binary Heap\n"<< endl;
   start = chrono::steady_clock::now();
   DijkstraBinary(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
@@ -108,13 +108,12 @@ int main(int argc, char *argv[])
   for (int i=0;i<=Nm;i++){
 	  Nodes[i].key = LARGE;
 	  Nodes[i].P = -1;
-	  Nodes[i].position = -1;
   }
 
-  cout << "CALLING Dijkstra Heap\n" << endl;
-  outfile << "Dijkstra Heap\n"<< endl;
+  cout << "CALLING Dijkstra Quake Heap\n" << endl;
+  outfile << "Dijkstra Quake Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraBinary(Nodes,Or,Nm);
+  DijkstraQuake(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
@@ -128,20 +127,8 @@ int main(int argc, char *argv[])
   for (int i=0;i<=Nm;i++){
 	  Nodes[i].key = LARGE;
 	  Nodes[i].P = -1;
-	  Nodes[i].position = -1;
   }
 
-  cout << "CALLING Bellman-Ford\n" << endl;
-  outfile << "Bellman-Ford\n"<< endl;
-  start = chrono::steady_clock::now();
-  // BellmanFord(Nodes,Or,Nm);
-  stop = chrono::steady_clock::now();
-  difference_in_time = stop - start;
-  difference_in_seconds = double(difference_in_time.count());
-  outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
-  outfile << endl;
-
-  printOutput(Nodes,Or,Nm,outfile);
 
 
   outfile.close();
