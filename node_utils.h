@@ -19,6 +19,19 @@ struct node{
   int id;
 };
 
+struct PairingNode{
+  node *entry;
+  PairingNode *_lchild;
+  PairingNode *_next;
+  PairingNode *_prev;
+  PairingNode(node *e){
+    _lchild = nullptr;
+    _next = nullptr;
+    _prev = nullptr;
+    entry = e;
+  }
+};
+
 struct FibNode{
   node *entry;
   FibNode *next;
