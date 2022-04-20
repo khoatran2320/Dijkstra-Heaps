@@ -110,10 +110,10 @@ int main(int argc, char *argv[])
 	  Nodes[i].P = -1;
   }
 
-  cout << "CALLING Dijkstra Quake Heap\n" << endl;
-  outfile << "Dijkstra Quake Heap\n"<< endl;
+  cout << "CALLING Dijkstra Fib Heap\n" << endl;
+  outfile << "Dijkstra Fib Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraQuake(Nodes,Or,Nm);
+  DijkstraFib(Nodes,Or,Nm);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());

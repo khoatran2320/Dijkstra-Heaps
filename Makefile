@@ -10,7 +10,7 @@ MY_INCLUDES =
 
 
 CCX = g++
-CXXFLAGS = -g -std=c++11 
+CXXFLAGS = -g -std=c++11 -O0
 # -Wall
 
 #============================================================

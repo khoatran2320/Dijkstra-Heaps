@@ -4,6 +4,7 @@
 #include <queue>
 #include "heaps/binary.h"
 #include "./heaps/quake.h"
+#include "./heaps/fibonacci.h"
 #include <string>
 #include "node_utils.h"
 
@@ -81,6 +82,43 @@ void DijkstraQuake(node N[], int Or, int Nm)
                 thisHeap->decreaseKey(&NN[v], du + edge->length);
                 NN[v].entry->P = node->entry->id;
                 NN[v].entry->key = du + edge->length;
+            }
+
+            edge = edge->next;
+       }
+   }
+
+} /* end DijkstraQuake */ 
+
+void DijkstraFib(node N[], int Or, int Nm)
+{
+   FibHeap<node> *thisHeap = new FibHeap<node>;
+   FibNode *NN[Nm+1];
+   struct arc *edge;
+   node *node;
+   N[Or].key = 0;
+    int v, du, dv;
+   //push all nodes to priority queue
+   for(int i = 1; i <= Nm; i++){
+       NN[i] = thisHeap->insert(&N[i]);
+   }
+
+    //loop until priority queue is empty
+   while(!thisHeap->IsEmpty()){
+       node = thisHeap->remove_min();
+       edge = node->first;
+
+       //traverse all neighbors v of u
+       while(edge != NULL){
+            v = edge->end;
+            du = node->key;
+            dv = NN[v]->entry->key;
+
+            //update distance and predecessor
+            if(dv > du + edge->length){
+                thisHeap->decreaseKey(NN[v], du + edge->length);
+                NN[v]->entry->P = node->id;
+                NN[v]->entry->key = du + edge->length;
             }
 
             edge = edge->next;

@@ -19,6 +19,25 @@ struct node{
   int id;
 };
 
+struct FibNode{
+  node *entry;
+  FibNode *next;
+  FibNode *prev;
+  FibNode *child;
+  FibNode *parent;
+  unsigned int deg;
+  bool marked;
+
+  FibNode(node *e){
+    entry = e;
+    prev = nullptr;
+    next = nullptr;
+    child = nullptr;
+    parent = nullptr;
+    deg = 0;
+    marked = false;
+  };
+};
 
 struct BinaryNode{
   node *entry;
@@ -49,7 +68,7 @@ struct QuakeHeapNode{
       QuakeHeapNode *_parent;
       QuakeHeapNode *_lchild;
       QuakeHeapNode *_rchild;
-      std::list<QuakeHeapNode*>::iterator _container;
+      std::list<QuakeHeapNode*>::iterator _root;
       QuakeHeapNode(QuakeNode * item){
          _node = item;
          _height = 0;
