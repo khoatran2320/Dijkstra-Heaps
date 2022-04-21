@@ -1,6 +1,7 @@
 #ifndef BINOMIAL_HEAP_H
 #define BINOMIAL_HEAP_H
 #include "../node_utils.h"
+#include <unordered_map>
 #include <list>
 using namespace std;
 #define LIST list<BinomialNode *>
@@ -11,6 +12,7 @@ class BinomialHeap
 private:
    LIST _heap;
    unsigned int elements;
+   unordered_map<int, BinomialNode *> _pos;
 
    BinomialNode *_mergeTrees(BinomialNode *n1, BinomialNode *n2){
       if(n1->entry->key > n2->entry->key){
@@ -136,14 +138,18 @@ private:
    }
    
 public:
+   unsigned int numInserts = 0;
+   unsigned int numRemoveMins = 0;
+   unsigned int numDecreaseKeys = 0;
+
    BinomialHeap(){
       elements = 0;
    };
    ~BinomialHeap(){
-
    };
 
    void insert(Object* item){
+      numInserts++;
       BinomialNode *newN = new BinomialNode(item);
       if(elements == 0){
          _heap.push_back(newN);
@@ -152,10 +158,11 @@ public:
          _insertTree(newN);
       }
       elements++;
+      _pos.emplace(make_pair(item->id, newN));
    };  	
 
    Object* remove_min(){
-
+      numRemoveMins++;
       //find min
       LIST::iterator it = _heap.begin();
       BinomialNode *minTree = *it;
@@ -180,6 +187,8 @@ public:
          it++;
       }
       Object *ret = minTree->entry;
+      unordered_map<int, BinomialNode*>::iterator z = _pos.find(ret->id);
+      _pos.erase(z);
 
       LIST newH;
       BinomialNode *tmp = minTree->_child;
@@ -200,17 +209,19 @@ public:
    }; 
 
    void decreaseKey(Object *n, int val){
+      numDecreaseKeys++;
       if(n->key < val){
          return;
       }
-      LIST::iterator it = _heap.begin();
-      BinomialNode *node = nullptr;
-      while (it != _heap.end() && node == nullptr)
-      {
-         node = _findNode(*it, n);
-         it++;
-      }
-
+      // LIST::iterator it = _heap.begin();
+      // BinomialNode *node = nullptr;
+      // while (it != _heap.end() && node == nullptr)
+      // {
+      //    node = _findNode(*it, n);
+      //    it++;
+      // }
+      BinomialNode *node = _pos.at(n->id);
+      
       // return if Node is not present
       if (node == nullptr) return;
       node->entry->key = val;
@@ -219,6 +230,8 @@ public:
       //upheap
       while (parent != nullptr && node->entry->key < parent->entry->key)
       {
+         _pos.at(node->entry->id) = parent;
+         _pos.at(parent->entry->id) = node;
          Object *tmp = node->entry;
          node->entry = parent->entry;
          parent->entry = tmp;

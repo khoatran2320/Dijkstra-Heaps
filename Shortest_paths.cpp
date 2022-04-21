@@ -63,6 +63,9 @@ int main(int argc, char *argv[])
   double difference_in_seconds; // Holds the final run time 
   node Nodes[maxnodes]; // The vertices of the graph
   struct arc *edge;
+  unsigned int numInserts;
+  unsigned int numRemoveMins;
+  unsigned int numDecreaseKeys;
 
 /* For simplicity, input vertices are numbered from 1 */
   cout << argv[1] << endl;
@@ -94,11 +97,14 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Binary Heap\n" << endl;
   outfile << "Dijkstra Binary Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraBinary(Nodes,Or,Nm);
+  DijkstraBinary(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
   outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << "Number of inserts: " << numInserts << endl;
+  outfile << "Number of remove mins: " << numRemoveMins << endl;
+  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
   outfile << endl;
 
   printOutput(Nodes,Or,Nm,outfile);
@@ -113,11 +119,14 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Fib Heap\n" << endl;
   outfile << "Dijkstra Fib Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraFib(Nodes,Or,Nm);
+  DijkstraFib(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
   outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << "Number of inserts: " << numInserts << endl;
+  outfile << "Number of remove mins: " << numRemoveMins << endl;
+  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
   outfile << endl;
 
   printOutput(Nodes,Or,Nm,outfile);
@@ -132,11 +141,14 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Pairing Heap\n" << endl;
   outfile << "Dijkstra Pairing Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraPairing(Nodes,Or,Nm);
+  DijkstraPairing(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
   outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << "Number of inserts: " << numInserts << endl;
+  outfile << "Number of remove mins: " << numRemoveMins << endl;
+  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
   outfile << endl;
 
   printOutput(Nodes,Or,Nm,outfile);
@@ -152,11 +164,14 @@ int main(int argc, char *argv[])
   cout << "CALLING Dijkstra Binomial Heap\n" << endl;
   outfile << "Dijkstra Binomial Heap\n"<< endl;
   start = chrono::steady_clock::now();
-  DijkstraBinom(Nodes,Or,Nm);
+  DijkstraBinom(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
   stop = chrono::steady_clock::now();
   difference_in_time = stop - start;
   difference_in_seconds = double(difference_in_time.count());
   outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << "Number of inserts: " << numInserts << endl;
+  outfile << "Number of remove mins: " << numRemoveMins << endl;
+  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
   outfile << endl;
   
   printOutput(Nodes,Or,Nm,outfile);

@@ -85,6 +85,9 @@ private:
         }
     }
 public:
+    unsigned int numInserts = 0;
+    unsigned int numRemoveMins = 0;
+    unsigned int numDecreaseKeys = 0;
     PairingHeap(){
         elements = 0;
         _heap = nullptr;
@@ -94,6 +97,7 @@ public:
         _heap = nullptr;
     };
     PairingNode *insert(Object* item){
+        numInserts++;
         PairingNode * newN = new PairingNode(item);
         if (_heap == nullptr)
             _heap = newN;
@@ -103,6 +107,7 @@ public:
         return newN;
     };  	
     Object* remove_min(){
+        numRemoveMins++;
         if (IsEmpty())
         {
             cout << "The Heap is Empty" << endl;
@@ -118,6 +123,7 @@ public:
     }; 
 
     void decreaseKey(PairingNode *node, int val){
+        numDecreaseKeys++;
         if (node->entry->key < val) return;
         node->entry->key = val;
         if (node != _heap)

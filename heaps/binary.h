@@ -8,11 +8,15 @@ template <typename Object>
 class BinaryHeap
 {
 public:
+   unsigned int numInserts = 0;
+   unsigned int numRemoveMins = 0;
+   unsigned int numDecreaseKeys = 0;
    BinaryHeap(){
       elements = 0;
    };
    void insert(Object* item){// Add the object pointer item to the heap
    //assert(!IsFull());
+      numInserts++;
 	   if (elements >= MAX_SIZE){
 		   cout << "Heap is full; can't insert "<< endl;
 			return;
@@ -23,6 +27,7 @@ public:
       upHeap(elements-1);
    };  	
    Object* remove_min(){
+      numRemoveMins++;
       if (elements ==0){
 		   cout << "empty heap error, can't delete"<<endl;
 	   }
@@ -40,6 +45,7 @@ public:
    
    void decreaseKey(int pos, int val)// Decreases Key in pos to val
    {
+      numDecreaseKeys++;
       array[pos]->entry->key = val; 
       upHeap(pos);
    }; 

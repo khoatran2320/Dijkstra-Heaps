@@ -145,38 +145,44 @@ private:
 		return heap;
 	}
 public:
-   FibHeap(){
-      elements = 0;
-      _heap = nullptr;
-   };
-   ~FibHeap(){
-      _clean(_heap);
-   };
-   FibNode *insert(Object* item){
-      FibNode *n = new FibNode(item);
-      n->next = n;
-      n->prev = n;
-      _heap = _merge(_heap, n);
-      elements++;
-      return n;
-   };  	
-   Object* remove_min(){
-      FibNode *old = _heap;
+	unsigned int numInserts = 0;
+   	unsigned int numRemoveMins = 0;
+   	unsigned int numDecreaseKeys = 0;
+	FibHeap(){
+		elements = 0;
+		_heap = nullptr;
+	};
+	~FibHeap(){
+		_clean(_heap);
+	};
+	FibNode *insert(Object* item){
+		numInserts++;
+		FibNode *n = new FibNode(item);
+		n->next = n;
+		n->prev = n;
+		_heap = _merge(_heap, n);
+		elements++;
+		return n;
+	};  	
+	Object* remove_min(){
+		numRemoveMins++;
+		FibNode *old = _heap;
 		_heap = _removeMin(_heap);
 		Object *ret = old->entry;
 		// delete old;
-      elements--;
+		elements--;
 		return ret;
-   }; 
-   
-   void decreaseKey(FibNode *n, int val){
-      _heap = _decreaseKey(_heap, n, val);
-   }; 
-     
+	}; 
 
-   bool IsEmpty() const {  return (elements <= 0);};
-   bool IsFull() const {return (elements >=MAX_SIZE );};
-   int count() const {return elements;};
+	void decreaseKey(FibNode *n, int val){
+		numDecreaseKeys++;
+		_heap = _decreaseKey(_heap, n, val);
+	}; 
+		
+
+	bool IsEmpty() const {  return (elements <= 0);};
+	bool IsFull() const {return (elements >=MAX_SIZE );};
+	int count() const {return elements;};
    
 };
 #endif

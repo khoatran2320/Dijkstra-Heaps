@@ -15,7 +15,7 @@
 using namespace std;
 
 
-void DijkstraBinary(node N[], int Or, int Nm)
+void DijkstraBinary(node N[], int Or, int Nm, unsigned int &numInserts, unsigned int &numRemoveMins, unsigned int &numDecreaseKeys)
 {
    BinaryHeap<BinaryNode> *thisHeap = new BinaryHeap<BinaryNode>;
    BinaryNode NN[Nm+1];
@@ -50,7 +50,9 @@ void DijkstraBinary(node N[], int Or, int Nm)
             edge = edge->next;
        }
    }
-
+    numInserts = thisHeap->numInserts;
+   numRemoveMins = thisHeap->numRemoveMins;
+   numDecreaseKeys = thisHeap->numDecreaseKeys;
 } /* end DijkstraHeap */ 
 
 
@@ -92,7 +94,7 @@ void DijkstraQuake(node N[], int Or, int Nm)
 
 } /* end DijkstraQuake */ 
 
-void DijkstraFib(node N[], int Or, int Nm)
+void DijkstraFib(node N[], int Or, int Nm, unsigned int &numInserts, unsigned int &numRemoveMins, unsigned int &numDecreaseKeys)
 {
    FibHeap<node> *thisHeap = new FibHeap<node>;
    FibNode *NN[Nm+1];
@@ -126,10 +128,13 @@ void DijkstraFib(node N[], int Or, int Nm)
             edge = edge->next;
        }
    }
+   numInserts = thisHeap->numInserts;
+   numRemoveMins = thisHeap->numRemoveMins;
+   numDecreaseKeys = thisHeap->numDecreaseKeys;
 
 } /* end DijkstraFib */ 
 
-void DijkstraPairing(node N[], int Or, int Nm)
+void DijkstraPairing(node N[], int Or, int Nm, unsigned int &numInserts, unsigned int &numRemoveMins, unsigned int &numDecreaseKeys)
 {
    PairingHeap<node> *thisHeap = new PairingHeap<node>;
    PairingNode *NN[Nm+1];
@@ -163,11 +168,13 @@ void DijkstraPairing(node N[], int Or, int Nm)
             edge = edge->next;
        }
    }
-
+    numInserts = thisHeap->numInserts;
+   numRemoveMins = thisHeap->numRemoveMins;
+   numDecreaseKeys = thisHeap->numDecreaseKeys;
 } /* end DijkstraPairing */ 
 
 
-void DijkstraBinom(node N[], int Or, int Nm)
+void DijkstraBinom(node N[], int Or, int Nm, unsigned int &numInserts, unsigned int &numRemoveMins, unsigned int &numDecreaseKeys)
 {
    BinomialHeap<node> *thisHeap = new BinomialHeap<node>;
 //    BinomialNode *NN[Nm+1];
@@ -206,7 +213,9 @@ void DijkstraBinom(node N[], int Or, int Nm)
             edge = edge->next;
        }
    }
-
+   numInserts = thisHeap->numInserts;
+   numRemoveMins = thisHeap->numRemoveMins;
+   numDecreaseKeys = thisHeap->numDecreaseKeys;
 } /* end DijkstraBinom */ 
 
 #endif
