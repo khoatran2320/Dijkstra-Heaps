@@ -19,6 +19,22 @@ struct node{
   int id;
 };
 
+struct BinomialNode{
+  node *entry;
+  BinomialNode *_child;
+  BinomialNode *_next;
+  BinomialNode *_parent;
+  unsigned int _deg;
+
+  BinomialNode(node *e){
+    entry = e;
+    _child = nullptr;
+    _next = nullptr;
+    _parent = nullptr;
+    _deg = 0;
+  };
+};
+
 struct PairingNode{
   node *entry;
   PairingNode *_lchild;

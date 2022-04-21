@@ -141,6 +141,26 @@ int main(int argc, char *argv[])
 
   printOutput(Nodes,Or,Nm,outfile);
 
+
+  // Reset for next algorithm 
+
+  for (int i=0;i<=Nm;i++){
+	  Nodes[i].key = LARGE;
+	  Nodes[i].P = -1;
+  }
+
+  cout << "CALLING Dijkstra Binomial Heap\n" << endl;
+  outfile << "Dijkstra Binomial Heap\n"<< endl;
+  start = chrono::steady_clock::now();
+  DijkstraBinom(Nodes,Or,Nm);
+  stop = chrono::steady_clock::now();
+  difference_in_time = stop - start;
+  difference_in_seconds = double(difference_in_time.count());
+  outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << endl;
+  
+  printOutput(Nodes,Or,Nm,outfile);
+
   outfile.close();
 
   return 0;

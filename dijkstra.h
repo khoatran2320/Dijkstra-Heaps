@@ -6,6 +6,7 @@
 #include "./heaps/quake.h"
 #include "./heaps/fibonacci.h"
 #include "./heaps/pairing.h"
+#include "./heaps/binomial.h"
 #include <string>
 #include "node_utils.h"
 
@@ -164,4 +165,48 @@ void DijkstraPairing(node N[], int Or, int Nm)
    }
 
 } /* end DijkstraPairing */ 
+
+
+void DijkstraBinom(node N[], int Or, int Nm)
+{
+   BinomialHeap<node> *thisHeap = new BinomialHeap<node>;
+//    BinomialNode *NN[Nm+1];
+   struct arc *edge;
+   node *node;
+   N[Or].key = 0;
+    int v, du, dv;
+   //push all nodes to priority queue
+   for(int i = 1; i <= Nm; i++){
+    //    NN[i] = thisHeap->insert(&N[i]);
+        thisHeap->insert(&N[i]);
+   }
+
+    //loop until priority queue is empty
+   while(!thisHeap->IsEmpty()){
+       node = thisHeap->remove_min();
+       edge = node->first;
+
+       //traverse all neighbors v of u
+       while(edge != NULL){
+            v = edge->end;
+            du = node->key;
+            // dv = NN[v]->entry->key;
+            dv = N[v].key;
+
+            //update distance and predecessor
+            if(dv > du + edge->length){
+                // thisHeap->decreaseKey(NN[v], du + edge->length);
+                thisHeap->decreaseKey(&N[v], du + edge->length);
+                // NN[v]->entry->P = node->id;
+                N[v].P = node->id;
+                // NN[v]->entry->key = du + edge->length;
+                N[v].key = du + edge->length;
+            }
+
+            edge = edge->next;
+       }
+   }
+
+} /* end DijkstraBinom */ 
+
 #endif
