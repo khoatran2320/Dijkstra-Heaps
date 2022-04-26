@@ -109,29 +109,7 @@ int main(int argc, char *argv[])
 
   printOutput(Nodes,Or,Nm,outfile);
 
-// Reset for next algorithm 
-
-  for (int i=0;i<=Nm;i++){
-	  Nodes[i].key = LARGE;
-	  Nodes[i].P = -1;
-  }
-
-  cout << "CALLING Dijkstra Fib Heap\n" << endl;
-  outfile << "Dijkstra Fib Heap\n"<< endl;
-  start = chrono::steady_clock::now();
-  DijkstraFib(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
-  stop = chrono::steady_clock::now();
-  difference_in_time = stop - start;
-  difference_in_seconds = double(difference_in_time.count());
-  outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
-  outfile << "Number of inserts: " << numInserts << endl;
-  outfile << "Number of remove mins: " << numRemoveMins << endl;
-  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
-  outfile << endl;
-
-  printOutput(Nodes,Or,Nm,outfile);
-
-// Reset for next algorithm 
+  // Reset for next algorithm 
 
   for (int i=0;i<=Nm;i++){
 	  Nodes[i].key = LARGE;
@@ -152,7 +130,6 @@ int main(int argc, char *argv[])
   outfile << endl;
 
   printOutput(Nodes,Or,Nm,outfile);
-
 
   // Reset for next algorithm 
 
@@ -175,6 +152,30 @@ int main(int argc, char *argv[])
   outfile << endl;
   
   printOutput(Nodes,Or,Nm,outfile);
+  
+
+// Reset for next algorithm 
+
+  for (int i=0;i<=Nm;i++){
+	  Nodes[i].key = LARGE;
+	  Nodes[i].P = -1;
+  }
+
+  cout << "CALLING Dijkstra Fib Heap\n" << endl;
+  outfile << "Dijkstra Fib Heap\n"<< endl;
+  start = chrono::steady_clock::now();
+  DijkstraFib(Nodes,Or,Nm, numInserts, numRemoveMins, numDecreaseKeys);
+  stop = chrono::steady_clock::now();
+  difference_in_time = stop - start;
+  difference_in_seconds = double(difference_in_time.count());
+  outfile << "CPU TIME in SECS " << difference_in_seconds<<endl;
+  outfile << "Number of inserts: " << numInserts << endl;
+  outfile << "Number of remove mins: " << numRemoveMins << endl;
+  outfile << "Number of decrease keys: " << numDecreaseKeys << endl;
+  outfile << endl;
+
+  printOutput(Nodes,Or,Nm,outfile);
+
 
   outfile.close();
 
