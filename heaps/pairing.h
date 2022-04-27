@@ -15,6 +15,7 @@ private:
     PairingNode *_heap;
 
     void _add_child(PairingNode *parent, PairingNode *child){
+        // add a child to the pairing tree
         if(parent->_lchild == nullptr){
             parent->_lchild = child;
         }else{
@@ -24,6 +25,7 @@ private:
     }
 
     void _merge(PairingNode *&n1, PairingNode *n2){
+        // merge two pairing trees
         if (n2 == nullptr)
             return;
         if (n2->entry->key < n1->entry->key)
@@ -77,6 +79,7 @@ private:
     }
     
     void _clean(PairingNode *root){
+        // delete the root
         if (root != nullptr)
         {
             _clean(root->_lchild);
@@ -97,6 +100,9 @@ public:
         _heap = nullptr;
     };
     PairingNode *insert(Object* item){
+        /*
+        Insert an item into the heap
+        */  
         numInserts++;
         PairingNode * newN = new PairingNode(item);
         if (_heap == nullptr)
@@ -107,6 +113,9 @@ public:
         return newN;
     };  	
     Object* remove_min(){
+        /*
+        Removes the min element from the heap and return
+        */
         numRemoveMins++;
         if (IsEmpty())
         {
@@ -123,6 +132,9 @@ public:
     }; 
 
     void decreaseKey(PairingNode *node, int val){
+        /*
+        Decrease the key of Object n to val
+        */
         numDecreaseKeys++;
         if (node->entry->key < val) return;
         node->entry->key = val;
