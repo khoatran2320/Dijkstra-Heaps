@@ -120,19 +120,6 @@ class BinomialHeap {
     _consolidate();
   }
 
-  BinomialNode *_findNode(BinomialNode *start, Object *entry) {
-    /* 
-    Helper function to find a node in the tree
-    */
-    if (start == nullptr) return nullptr;
-    if (start->entry == entry) return start;
-
-    // Recur for child
-    BinomialNode *res = _findNode(start->_child, entry);
-    if (res != nullptr) return res;
-    return _findNode(start->_next, entry);
-  }
-
  public:
   unsigned int numInserts = 0;
   unsigned int numRemoveMins = 0;
@@ -155,6 +142,7 @@ class BinomialHeap {
       _insertTree(newN);
     }
     elements++;
+    //insert node into map to track position
     _pos.emplace(make_pair(item->id, newN));
   };
 
@@ -224,8 +212,11 @@ class BinomialHeap {
 
     // upheap
     while (parent != nullptr && node->entry->key < parent->entry->key) {
+      //swap the positions in map
       _pos.at(node->entry->id) = parent;
       _pos.at(parent->entry->id) = node;
+
+      //swap the entries
       Object *tmp = node->entry;
       node->entry = parent->entry;
       parent->entry = tmp;
