@@ -56,43 +56,43 @@ void DijkstraBinary(node N[], int Or, int Nm, unsigned int &numInserts, unsigned
 } /* end DijkstraHeap */ 
 
 
-void DijkstraQuake(node N[], int Or, int Nm)
-{
-   QuakeHeap<QuakeNode> *thisHeap = new QuakeHeap<QuakeNode>;
-   QuakeNode NN[Nm+1];
-   struct arc *edge;
-   QuakeNode *node;
-   N[Or].key = 0;
-    int v, du, dv;
-   //push all nodes to priority queue
-   for(int i = 1; i <= Nm; i++){
-       NN[i] = QuakeNode(&N[i]);
-       thisHeap->insert(&NN[i]);
-   }
+// void DijkstraQuake(node N[], int Or, int Nm)
+// {
+//    QuakeHeap<QuakeNode> *thisHeap = new QuakeHeap<QuakeNode>;
+//    QuakeNode NN[Nm+1];
+//    struct arc *edge;
+//    QuakeNode *node;
+//    N[Or].key = 0;
+//     int v, du, dv;
+//    //push all nodes to priority queue
+//    for(int i = 1; i <= Nm; i++){
+//        NN[i] = QuakeNode(&N[i]);
+//        thisHeap->insert(&NN[i]);
+//    }
 
-    //loop until priority queue is empty
-   while(!thisHeap->IsEmpty()){
-       node = thisHeap->remove_min();
-       edge = node->entry->first;
+//     //loop until priority queue is empty
+//    while(!thisHeap->IsEmpty()){
+//        node = thisHeap->remove_min();
+//        edge = node->entry->first;
 
-       //traverse all neighbors v of u
-       while(edge != NULL){
-            v = edge->end;
-            du = node->entry->key;
-            dv = NN[v].entry->key;
+//        //traverse all neighbors v of u
+//        while(edge != NULL){
+//             v = edge->end;
+//             du = node->entry->key;
+//             dv = NN[v].entry->key;
 
-            //update distance and predecessor
-            if(dv > du + edge->length){
-                thisHeap->decreaseKey(&NN[v], du + edge->length);
-                NN[v].entry->P = node->entry->id;
-                NN[v].entry->key = du + edge->length;
-            }
+//             //update distance and predecessor
+//             if(dv > du + edge->length){
+//                 thisHeap->decreaseKey(&NN[v], du + edge->length);
+//                 NN[v].entry->P = node->entry->id;
+//                 NN[v].entry->key = du + edge->length;
+//             }
 
-            edge = edge->next;
-       }
-   }
+//             edge = edge->next;
+//        }
+//    }
 
-} /* end DijkstraQuake */ 
+// } /* end DijkstraQuake */ 
 
 void DijkstraFib(node N[], int Or, int Nm, unsigned int &numInserts, unsigned int &numRemoveMins, unsigned int &numDecreaseKeys)
 {

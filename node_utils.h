@@ -1,8 +1,8 @@
 #ifndef NODE_UTILS_H
 #define NODE_UTILS_H
-#include <list>
-#include <iterator>
-#include <iostream>
+// #include <list>
+// #include <iterator>
+// #include <iostream>
 
 const int MAX_SIZE = 200000; //the maximum amount of elements our heap should have.
 
