@@ -13,3 +13,6 @@ test.cpp
 # Built Visual Studio Code Extensions
 *.vsix
 test.dSYM
+
+heaps/quake.h
+heaps/dump.h
