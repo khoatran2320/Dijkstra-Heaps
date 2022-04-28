@@ -16,3 +16,4 @@ test.dSYM
 
 heaps/quake.h
 heaps/dump.h
+heaps/rank_pairing.h
